@@ -46,6 +46,9 @@ public class Point {
     protected static double distance(Point p, Point centroid) {
         return Math.sqrt(Math.pow((centroid.getY() - p.getY()), 2) + Math.pow((centroid.getX() - p.getX()), 2));
     }
+    protected static double distance2(Point p, Point centroid) {
+        return Math.sqrt(Math.pow((centroid.getY() - p.getY()), 2) + Math.pow((centroid.getX() - p.getX()), 2));
+    }
 
     //Creates random point
     protected static Point createRandomPoint(int min, int max) {

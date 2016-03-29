@@ -21,6 +21,10 @@ public class KMeans {
     private List<Point> points;
     private List<Cluster> clusters;
 
+    ArrayList<Double> distList ;
+
+
+
     public KMeans() {
         this.points = new ArrayList();
         this.clusters = new ArrayList();
@@ -31,6 +35,43 @@ public class KMeans {
         KMeans kmeans = new KMeans();
         kmeans.init();
         kmeans.calculate();
+        kmeans.clusterQuality(kmeans);
+        System.out.println(kmeans);
+
+    }
+
+    void clusterQuality(KMeans kMeans){
+        // küme merkezi ve o kümenin en son bir birlerine olan uzaklıkları hesaplanıyor. (centroid, points)
+
+        this.distList = new ArrayList();
+        double d1 = 0;
+        for (int i = 0 ; i < NUM_CLUSTERS ; i ++ ){
+            int kümeElemanSayısı= kMeans.getClusters().get(i).getPoints().size();
+            for (int j = 0 ; j < kMeans.getClusters().get(i).getPoints().size(); j ++)
+            {
+                Point p1 = kMeans.getClusters().get(i).getCentroid();
+                Point p2 = (Point) kMeans.getClusters().get(i).getPoints().get(j);
+                // double a = distList.get(i) + Point.distance2(p1, p2);
+                d1 = d1 + Point.distance2(p1, p2);
+                // distList.add(i, a);
+            //System.out.println(distList.get(i));
+        }
+            System.out.println(d1);
+//            distList.add(d1);
+            double d2 = d1 / kümeElemanSayısı;
+            distList.add(d2);
+
+
+        }
+        System.out.println(distList);
+    }
+
+    public List<Cluster> getClusters() {
+        return clusters;
+    }
+
+    public void setClusters(List<Cluster> clusters) {
+        this.clusters = clusters;
     }
 
     //Initializes the process
