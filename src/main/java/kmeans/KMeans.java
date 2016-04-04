@@ -36,8 +36,16 @@ public class KMeans {
         kmeans.init();
         kmeans.calculate();
         kmeans.clusterQuality(kmeans);
+        kmeans.getIndex(kmeans);
         System.out.println(kmeans);
 
+    }
+    void getIndex(KMeans kMeans){
+        int i = 1 ;
+        for (int j = 0; j < kMeans.getClusters().get(i).getPoints().size(); j ++){
+            int index = this.points.indexOf( kMeans.getClusters().get(i).getPoints().get(j));
+            System.out.println(index);
+        }
     }
 
     void clusterQuality(KMeans kMeans){
